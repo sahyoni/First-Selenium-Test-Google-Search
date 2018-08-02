@@ -11,33 +11,59 @@ import java.util.List;
 
 public class myFirstTest {
 
-    WebDriverWait wait;
+    private WebDriver webDriver = new FirefoxDriver();
+
+    WebDriverWait wait = new WebDriverWait(webDriver, 5);
 
     @Test
     public void myFirstTestSelenium() {
 
-        WebDriver driver = new FirefoxDriver();
+        String expectedTitle = openGoogle(webDriver);
 
-        String expectedTitle = openGoogle(driver);
-
-        String actualTitle = driver.getTitle();
+        String actualTitle = webDriver.getTitle();
 
 
         checkTitle(expectedTitle, actualTitle);
-        searchForTestoAndGetTheFirstResultAndClickOnIt(driver);
+        searchForTestoAndGetTheFirstResultAndClickOnIt(webDriver);
 
-        hoverOverProduktInNavBarAndClickFeuchte(driver);
+        checkIfTheDropDownNavBarHaveElements();
+
+        hoverOverProduktInNavBarAndClickFeuchte(webDriver);
+
+        clickKokiesAkzeptieren();
+
+        clickTemperatur();
+
+        clickSortByLowerPrise();
+
 
         //driver.close();
+    }
+
+    private void clickSortByLowerPrise() {
+        wait.until(ExpectedConditions.elementToBeClickable(By.className("sbSelector"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Preis: niedrigster zuerst"))).click();
+    }
+
+    private void clickKokiesAkzeptieren() {
+        wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Akzeptieren"))).click();
+    }
+
+    private void clickTemperatur() {
+        wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Temperatur"))).click();
+    }
+
+    private void checkIfTheDropDownNavBarHaveElements() {
+        List<WebElement> listOfMenuElement = webDriver.findElements(By.className("submenu"));
+        System.out.println(listOfMenuElement.size());
     }
 
     private void searchForTestoAndGetTheFirstResultAndClickOnIt(WebDriver driver) {
         WebElement searchArea = driver.findElement(By.name("q"));
         searchArea.sendKeys("Testo\n");
-        searchArea.submit();
+        // OR //searchArea.submit();
 
-        WebElement myDynamicElement = (new WebDriverWait(driver, 10))
-                .until(ExpectedConditions.presenceOfElementLocated(By.id("resultStats")));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("resultStats")));
 
         List<WebElement> findElements = driver.findElements(By.xpath("//*[@id='rso']//h3/a"));
 
@@ -57,8 +83,6 @@ public class myFirstTest {
     private String openGoogle(WebDriver driver) {
         String baseUrl = "https://www.google.com/";
         String expectedTitle = "Google";
-        String actualTitle = "";
-
         driver.get(baseUrl);
         return expectedTitle;
     }
