@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="myFirstTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-07-26T09:17:10" hostname="nn64pce1897" time="4.05">
+  <properties/>
+  <testcase name="myFirstTestSelenium" classname="myFirstTest" time="4.05"/>
+  <system-out><![CDATA[Test Passed!
+https://www.testo.com/de-DE/
+https://www.testo.com/
+https://www.testo.com/en-UK/
+https://en.wikipedia.org/wiki/Testo
+https://www.testotis.de/
+https://www.kununu.com/de/testo-se
+https://www.shop-testo.de/
+https://www.testo-sensor.com/en/home.html
+https://www.trutechtools.com/Testo
+]]></system-out>
+  <system-err><![CDATA[1532596630430	geckodriver	INFO	Listening on 127.0.0.1:32177
+1532596630578	geckodriver::marionette	INFO	Starting browser /usr/lib/firefox/firefox with args ["-marionette"]
+1532596631907	Marionette	INFO	Listening on port 40825
+Jul 26, 2018 11:17:12 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+]]></system-err>
+</testsuite>

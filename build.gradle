@@ -17,9 +17,17 @@ plugins {
 // Define the main class for the application
 mainClassName = 'App'
 
+def seleniumVersion = '3.5.3'
+ext['selenium.version'] = seleniumVersion
+
 dependencies {
     // This dependency is found on compile classpath of this component and consumers.
     compile 'com.google.guava:guava:23.0'
+    testCompile "org.seleniumhq.selenium:selenium-java:${seleniumVersion}"
+    testCompile "org.seleniumhq.selenium:selenium-firefox-driver:${seleniumVersion}"
+    testCompile "org.seleniumhq.selenium:selenium-api:${seleniumVersion}"
+    testCompile "org.seleniumhq.selenium:selenium-remote-driver:${seleniumVersion}"
+    testCompile "org.seleniumhq.selenium:selenium-support:${seleniumVersion}"
 
     // Use JUnit test framework
     testCompile 'junit:junit:4.12'
